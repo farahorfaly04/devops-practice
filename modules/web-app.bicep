@@ -4,6 +4,7 @@ param appServicePlanId string
 
 param dockerRegistryName string
 param dockerRegistryServerUserName string
+@secure()
 param dockerRegistryServerPassword string
 param dockerRegistryImageName string
 param dockerRegistryImageVersion string = 'latest'
