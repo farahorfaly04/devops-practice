@@ -14,8 +14,6 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-01-01-pr
   }
 }
 
-
-
 var credentials = containerRegistry.listCredentials()
 output adminUsername string = credentials.username
 output adminPassword string = credentials.passwords[0].value
