@@ -1,10 +1,10 @@
 using '../main.bicep'
 
 //asp params
-param appServicePlanName = 'farah-asp'
+param appServicePlanName = 'farahServicePlan'
 
-param containerRegistryName = 'farah-cont'
+param containerRegistryName = 'farahContainerRegistry'
 
-param StaticWebAppName = 'farah-web-app'
+param StaticWebAppName = 'farahWebApp'
 
-param containerRegistryImageName = 'farah-image'
+param containerRegistryImageName = 'farahImage"
