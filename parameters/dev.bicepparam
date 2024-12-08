@@ -1,4 +1,4 @@
-using '/main.bicep'
+using './main.bicep'
 
 //asp params
 param appServicePlanName = 'farah-asp'
