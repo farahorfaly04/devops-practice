@@ -11,7 +11,8 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-01-01-pr
     adminUserEnabled: true
   }
 }
-
 var credentials = containerRegistry.listCredentials()
+#disable-next-line outputs-should-not-contain-secrets
 output adminUsername string = credentials.username
+#disable-next-line outputs-should-not-contain-secrets
 output adminPassword string = credentials.passwords[0].value
