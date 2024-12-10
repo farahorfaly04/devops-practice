@@ -6,4 +6,4 @@ param containerRegistryName = 'farahContainerRegistry'
 
 param webAppName = 'farahWebApp'
 
-param containerRegistryImageName = 'farahImage'
+param containerRegistryImageName = 'farahimage'
