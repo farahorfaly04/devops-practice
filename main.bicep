@@ -27,15 +27,15 @@ module appServicePlan 'modules/app-service-plan.bicep' = {
 }
 
 
-@sys.description('static web app name')
-param StaticWebAppName string
+@sys.description('Web app name')
+param webAppName string
 param containerRegistryImageVersion string = 'latest'
 param containerRegistryImageName string
 
-module StaticWebApp 'modules/web-app.bicep' = {
-  name: StaticWebAppName
+module webApp 'modules/web-app.bicep' = {
+  name: webAppName
   params: {
-    staticWebAppName: StaticWebAppName
+    webAppName: webAppName
     location: location
     appServicePlanId: appServicePlan.outputs.id
     dockerRegistryName : containerRegistryName

@@ -4,6 +4,6 @@ param appServicePlanName = 'farahServicePlan'
 
 param containerRegistryName = 'farahContainerRegistry'
 
-param StaticWebAppName = 'farahWebApp'
+param webAppName = 'farahWebApp'
 
 param containerRegistryImageName = 'farahImage'

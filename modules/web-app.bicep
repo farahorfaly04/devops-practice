@@ -1,4 +1,4 @@
-param staticWebAppName string
+param webAppName string
 param location string = resourceGroup().location
 param appServicePlanId string
 
@@ -18,8 +18,8 @@ var dockerAppSettings = [
   { name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE', value: 'false'}
 ]
 
-resource staticWebApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: staticWebAppName
+resource webApp 'Microsoft.Web/sites@2022-03-01' = {
+  name: webAppName
   location: location
   kind: 'app'
   properties: {
