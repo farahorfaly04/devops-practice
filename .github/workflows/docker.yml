@@ -13,9 +13,8 @@ env:
   IMAGE_BASE_NAME: farahimage # Replace with your Docker image name
   WEBAPP_NAME: farahWebApp # Replace with your Web App name
   KEY_VAULT_NAME: farahKeyVault # Replace with your Key Vault name
-  KEY_VAULT_SECRET_NAME_ACR_USERNAME: acrAdminUserName # Replace with your Key Vault secret name for ACR username
-  KEY_VAULT_SECRET_NAME_ACR_PASSWORD: acrAdminUserPassword # Replace with your Key Vault secret name for ACR password
-  KEY_VAULT_SECRET_NAME_ACR_PASSWORD1: acrAdminUserPassword1 # Replace with your Key Vault secret name for ACR password
+  ACR_USERNAME_SECRET: acrAdminUserName # Replace with your Key Vault secret name for ACR username
+  ACR_PASSWORD_SECRET: acrAdminUserPassword # Replace with your Key Vault secret name for ACR password
 
 jobs:
   build-and-push:
@@ -35,8 +34,8 @@ jobs:
         uses: azure/CLI@v1
         with: 
           inlineScript: |
-            echo "REGISTRY_USERNAME=$(az keyvault secret show --name ${{ env.KEY_VAULT_SECRET_NAME_ACR_USERNAME }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
-            echo "REGISTRY_PASSWORD=$(az keyvault secret show --name ${{ env.KEY_VAULT_SECRET_NAME_ACR_PASSWORD }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
+            echo "REGISTRY_USERNAME=$(az keyvault secret show --name ${{ env.ACR_USERNAME_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
+            echo "REGISTRY_PASSWORD=$(az keyvault secret show --name ${{ env.ACR_PASSWORD_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
 
       # Step 3: Login to Azure Container Registry
       - name: Login to ACR
