@@ -28,7 +28,7 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
       linuxFxVersion: 'DOCKER|${dockerRegistryName}.azurecr.io/${dockerRegistryImageName}:${dockerRegistryImageVersion}'
       appCommandLine: ''
       appSettings: union(appSettings, dockerAppSettings)
-  
+      
     }
   }
 }
