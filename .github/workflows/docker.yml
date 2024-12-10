@@ -35,9 +35,12 @@ jobs:
         uses: azure/cli@v1
         with: 
           inlineScript: |
-            echo "REGISTRY_USERNAME=$(az keyvault secret show --name ${{ env.ACR_USERNAME_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
-            echo "REGISTRY_PASSWORD0=$(az keyvault secret show --name ${{ env.ACR_PASSWORD0_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
-            echo "REGISTRY_PASSWORD1=$(az keyvault secret show --name ${{ env.ACR_PASSWORD1_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
+           ACR_USERNAME=$(az keyvault secret show --name ${{ env.ACR_USERNAME_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)
+           ACR_PASSWORD0=$(az keyvault secret show --name ${{ env.ACR_PASSWORD0_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)
+           ARCH_PASSWORD1=$(az keyvault secret show --name ${{ env.ACR_PASSWORD1_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)
+           echo "REGISTRY_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
+           echo "REGISTRY_PASSWORD0=$ACR_PASSWORD0" >> $GITHUB_ENV
+           echo "REGISTRY_PASSWORD1=$ACR_PASSWORD1" >> $GITHUB_ENV
 
       # Step 3: Login to Azure Container Registry
       - name: Login to ACR
