@@ -14,8 +14,8 @@ env:
   WEBAPP_NAME: farahWebApp # Replace with your Web App name
   KEY_VAULT_NAME: farahKeyVault # Replace with your Key Vault name
   ACR_USERNAME_SECRET: acrAdminUserNameSecretName # Replace with your Key Vault secret name for ACR username
-  ACR_PASSWORD0_SECRET: acrAdminUserPassword0SecretName # Replace with your Key Vault secret name for ACR password
-  ACR_PASSWORD1_SECRET: acrAdminUserPassword1SecretName # Replace with your Key Vault secret name for ACR password
+  ACR_PASSWORD0_SECRET: acrAdminPassword0SecretName # Replace with your Key Vault secret name for ACR password
+  ACR_PASSWORD1_SECRET: acrAdminPassword1SecretName # Replace with your Key Vault secret name for ACR password
 
 jobs:
   build-and-push:
