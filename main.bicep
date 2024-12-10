@@ -68,7 +68,8 @@ module webApp 'modules/web-app.bicep' = {
     
     dockerRegistryServerUrl: 'https://${containerRegistryName}.azurecr.io'
     dockerRegistryServerUserName: keyvault.getSecret(acrAdminUserNameSecretName)
-    dockerRegistryServerPassword: keyvault.getSecret(acrAdminUserNameSecretName)
+    dockerRegistryServerPassword: keyvault.getSecret(acrAdminPassword0SecretName)
+    dockerRegistryServerPassword1: keyvault.getSecret(acrAdminPassword1SecretName)
   }
 } 
 

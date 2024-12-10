@@ -12,6 +12,10 @@ env:
   REGISTRY_LOGIN_SERVER: farahcontainerregistry.azurecr.io # Replace with your ACR login server
   IMAGE_BASE_NAME: farahimage # Replace with your Docker image name
   WEBAPP_NAME: farahWebApp # Replace with your Web App name
+  KEY_VAULT_NAME: farahKeyVault # Replace with your Key Vault name
+  KEY_VAULT_SECRET_NAME_ACR_USERNAME: acrAdminUserName # Replace with your Key Vault secret name for ACR username
+  KEY_VAULT_SECRET_NAME_ACR_PASSWORD: acrAdminUserPassword # Replace with your Key Vault secret name for ACR password
+  KEY_VAULT_SECRET_NAME_ACR_PASSWORD1: acrAdminUserPassword1 # Replace with your Key Vault secret name for ACR password
 
 jobs:
   build-and-push:
