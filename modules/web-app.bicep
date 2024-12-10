@@ -1,22 +1,22 @@
 param webAppName string
 param location string = resourceGroup().location
 param appServicePlanId string
+param siteConfig object
 
-param dockerRegistryName string
+@secure()
+param dockerRegistryServerUrl string
+@secure()
 param dockerRegistryServerUserName string
 @secure()
 param dockerRegistryServerPassword string
-param dockerRegistryImageName string
-param dockerRegistryImageVersion string = 'latest'
 
-param appSettings array = []
+param appSettingsKeyValuePairs object
 
-var dockerAppSettings = [
-  { name: 'DOCKER_REGISTRY_SERVER_URL', value: 'https://${dockerRegistryName}.azurecr.io' }
-  { name: 'DOCKER_REGISTRY_SERVER_USERNAME', value: dockerRegistryServerUserName }
-  { name: 'DOCKER_REGISTRY_SERVER_PASSWORD', value: dockerRegistryServerPassword }
-  { name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE', value: 'false'}
-]
+var dockerAppSettings = {
+  DOCKER_REGISTRY_SERVER_URL: dockerRegistryServerUrl
+  DOCKER_REGISTRY_SERVER_USERNAME: dockerRegistryServerUserName
+  DOCKER_REGISTRY_SERVER_PASSWORD: dockerRegistryServerPassword
+}
 
 resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   name: webAppName
@@ -25,10 +25,14 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   properties: {
     serverFarmId: appServicePlanId
     siteConfig: {
-      linuxFxVersion: 'DOCKER|${dockerRegistryName}.azurecr.io/${dockerRegistryImageName}:${dockerRegistryImageVersion}'
-      appCommandLine: ''
-      appSettings: union(appSettings, dockerAppSettings)
-      
+      linuxFxVersion: siteConfig.linuxFxVersion
+      appCommandLine: siteConfig.appCommandLine
+      appSettings: [
+        for key in objectKeys(union(appSettingsKeyValuePairs, dockerAppSettings)): {
+          name: key
+          value: union(appSettingsKeyValuePairs, dockerAppSettings)[key]
+        }
+      ]
     }
   }
 }
