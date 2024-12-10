@@ -32,7 +32,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'Get docker registry credentials from Azure Key Vault'
-        uses: azure/CLI@v1
+        uses: azure/cli@v1
         with: 
           inlineScript: |
             echo "REGISTRY_USERNAME=$(az keyvault secret show --name ${{ env.ACR_USERNAME_SECRET }} --vault-name ${{ env.KEY_VAULT_NAME }} --query value -o tsv)" >> $GITHUB_ENV
